@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head><title>Survey Form</title>
+
+<!-- <link rel="stylesheet" type="text/css" href="CSS/style.css" title="style" />
+<link href="${facesContext.externalContext.requestContextPath}/Style.css"     rel="stylesheet" type="text/css"/> --> 
+
+
+</h:head>
+<h:body style="background-color:#ffffcc;">
+
+  
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1>Student Feedback Form</h1>
+        </div>
+      </div>
+    </div>
+    <div id="site_content">
+      <div id="content">
+      	
+  <h:form>
+    <h:panelGrid columns="2">
+
+      <p:outputLabel value="First Name :"></p:outputLabel>
+   		<p:inputText  id="fName" required="true" value="#{formBean.fName}" size="40" pt:placeholder="First Name" validatorMessage="Please enter your First Name correctly">
+        <f:validateRegex pattern="^[a-zA-Z]*$"></f:validateRegex>
+		<f:validateLength maximum = "15"> </f:validateLength>
+        </p:inputText>
+        <p:message for="fName" styleClass="error"></p:message>
+   <br/> 
+      <p:outputLabel value="Last Name :"></p:outputLabel>
+   	<p:inputText  id="lName" required="true" value="#{formBean.lName}" size="40" pt:placeholder="Last Name" validatorMessage="Please enter your Last Name correctly">
+        <f:validateRegex pattern="^[a-zA-Z]*$"></f:validateRegex>
+		<f:validateLength maximum = "15"> </f:validateLength>
+        </p:inputText>
+        <p:message for="lName" styleClass="error"></p:message>
+    <br/>    
+    <br/>
+    
+           <p:outputLabel value="Address :"></p:outputLabel>
+        
+        <p:inputText  id="address" required="true" value="#{formBean.address}" size="40" pt:placeholder="Street Address Line 1" >
+		<f:validateLength maximum = "25"> </f:validateLength>
+        </p:inputText>
+        <p:message for="address" styleClass="error"></p:message>
+   <br/>
+      <p:outputLabel value="Zip :"></p:outputLabel>
+   
+        <p:inputText  id="zip" required="true" value="#{formBean.zip}" size="25" pt:placeholder="Zip" validatorMessage="Please enter Zip code correctly, Numbers Only">
+        <f:ajax event="keyup" render="city state" />
+        <f:validateRegex pattern="^\d{5}(?:[-\s]\d{4})?$"/>
+		</p:inputText>
+		<p:message for="zip" styleClass="error"></p:message>
+   
+  	 <br/>     
+           <p:outputLabel value="City :"></p:outputLabel>
+        
+        <p:inputText  id="city" required="true" value="#{formBean.city}" size="16" pt:placeholder="City" validatorMessage="Please enter City correctly">
+         <f:validateRegex pattern="^[a-zA-Z\s]*$"></f:validateRegex>
+		<f:validateLength maximum = "15"> </f:validateLength>
+        </p:inputText>
+        <p:message for="city" styleClass="error"></p:message>
+        <br/>
+    
+       <p:outputLabel value="State :"></p:outputLabel>
+    
+        <p:inputText  id="state" required="true" value="#{formBean.state}" size="16" pt:placeholder="State" validatorMessage="Please enter State correctly">
+        <f:validateRegex pattern="^[a-zA-Z]*$"></f:validateRegex>
+		<f:validateLength maximum = "15"> </f:validateLength>
+        </p:inputText>
+        <p:message for="state" styleClass="error"></p:message>
+        
+        
+      <br/>  
+      <br/> 
+      <p:outputLabel value = "Contact Number" />
+      <p:inputMask id="contactNumber" value="#{formBean.contactNumber}" mask="(999) 999-9999" pt:placeholder="(000) 000-0000"/>
+ 
+				<p:message for="contactNumber" styleClass="error" ></p:message>
+      
+      <br/>
+      <br/>  
+         <p:outputLabel value="Email :"></p:outputLabel>
+      
+        <p:inputText id="email" required="true" value="#{formBean.email}" size="40"  pt:placeholder="Enter Email" validatorMessage="Please enter your email correctly">
+        <f:validateRegex pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" />
+				</p:inputText>
+				<p:message for="email" styleClass="error"></p:message>	
+        
+        
+      <br/>
+      
+      
+      <br/>
+      <p:outputLabel value = "Date of Survey" />
+      <p:calendar id="dateSurvey" value="#{formBean.dateSurvey}"
+            	binding="#{startDateComponent}" 
+            	pattern="MM/dd/yyyy"
+            	requiredMessage="Enter date of survey"
+            	validatorMessage="Enter Date of Survey in mm/dd/yyyy"
+            	required="true"  />
+      <p:message for="dateSurvey" styleClass="error" />
+       <br/>
+       <br/>
+	  
+	  
+	  <p:outputLabel value="Start Date of Semester" />
+	  <p:calendar id = "stdate" value="#{formBean.startDate}" 
+				pattern="MM/dd/yyyy"
+			    required="true"
+				requiredMessage="Start date required" >
+	  <f:validator validatorId="dateValidator"></f:validator>
+	  <f:attribute name="startDateComponent" value="#{startDateComponent}" />
+	  </p:calendar>
+	  <p:message for= "stdate" styleClass="error"/>
+
+
+       
+      <br/>
+      
+      <p:outputLabel value = "What did you like the most about campus ?" />
+      <p:selectManyCheckbox value="#{formBean.campusRating}" >
+		   	<f:selectItem itemValue="Student" itemLabel="Student" />
+		   	<f:selectItem itemValue="Campus" itemLabel="Campus" />
+		   	<f:selectItem itemValue="Dorm rooms" itemLabel="Dorm rooms" />
+		   	<f:selectItem itemValue="Location" itemLabel="Location" />
+		   	<f:selectItem itemValue="Atmosphere" itemLabel="Atmosphere" />
+		   	<f:selectItem itemValue="Sports" itemLabel="Sports" />
+	  </p:selectManyCheckbox>
+       
+        <p:outputLabel value = "How did you hear about us ?"  />
+       
+      	<p:selectOneRadio id="source" value="#{formBean.source}">
+		   	<f:selectItem itemValue="Friends" itemLabel="Friends" />
+		   	<f:selectItem itemValue="Television" itemLabel="Television" />
+		   	<f:selectItem itemValue="Internet" itemLabel="Internet" />
+		   	<f:selectItem itemValue="Other" itemLabel="Other" />
+	  </p:selectOneRadio> 
+	 
+     <p:outputLabel value = "How likely would you recommend this school to other students ?"/>
+     <p:autoComplete value="#{formBean.recommend}" completeMethod="#{formBean.autoRecommend}"/>
+     
+     <p:outputLabel value="Raffle :"/>
+      
+      <p:inputText required="true" id="raffle" value="#{formBean.raffle}" size="40" pt:placeholder="Please Enter 10 comma separated numbers [1 - 100]"  validatorMessage="Exactly 10 numbers acceptable between 1 to 100  (NUMBERS ONLY !)  " >
+      <f:validateRegex pattern="^[0-9]+([,][0-9]{1,2})*$" />
+      <f:validator validatorId="raffleValidator"></f:validator>
+      </p:inputText>
+        <p:message for="raffle" styleClass="error"></p:message>	
+      <br/>
+      
+         <p:outputLabel value="Comments :"></p:outputLabel>
+         <p:inputTextarea cols="50" rows="5" value="#{formBean.comments}" pt:placeholder="Any Comments or suggestions ?"/>
+        
+      
+
+      <p:commandButton value="submit" action="#{formBean.actionController()}" onclick="#{formBean.init()}" ajax="false"/>      
+      <p:commandButton type="reset" value="Reset" onClick="window.location.reload()"  ajay="false"/>
+      
+ 
+  
+  
+  	 </h:panelGrid>
+  </h:form>
+  
+     </div>
+    </div>
+  </div>
+  
+  
+</h:body>
+</html>

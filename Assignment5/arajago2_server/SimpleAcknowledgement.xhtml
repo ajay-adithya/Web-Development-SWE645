@@ -1,0 +1,47 @@
+
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Thankyou!!!!!!!!!!</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #ffffcc;
+}
+
+h1, p {
+	color: #3b5998;
+}
+</style>
+	<h1>Thank you #{formBean.fName} #{formBean.lName} for taking the survey</h1>
+	<h:panelGrid columns="2">
+		<p:outputLabel value="Mean:" /> 
+     #{formBean.mean1}
+      <p:outputLabel value="Standard Deviation:" />
+     #{formBean.SD}  
+      <p:outputLabel
+			value="Please click on the link to take another survey:" />
+		<p:link value="Student Survey" outcome="Survey.jsf" />
+		<p:outputLabel
+				value="Please click on Home to visit the Welcome Page:" />
+            <p:link value="Home" outcome="Index.jsf"  ajax="false" />
+	
+            
+            <p:outputLabel
+				value="Please click on the list of surveys to view all the surveys:" />
+            <p:link value="List of Surveys" outcome="ListSurveys.jsf" ajax="false"  />
+            
+            <p:outputLabel
+				value="Please click on the search surveys to search for someone:" />
+            <p:link value="Search Surveys" outcome="Search.jsf" ajax="false"  />
+	</h:panelGrid>
+</h:body>
+</html>

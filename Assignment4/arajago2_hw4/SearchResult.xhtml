@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head><title>Records</title>
+<!-- 	<link rel="stylesheet" type="text/css" href="CSS/style.css" title="style" />
+<link href="${facesContext.externalContext.requestContextPath}/Style.css"     rel="stylesheet" type="text/css"/> -->
+
+
+</h:head>
+<h:body style="background-color:#ffffcc;">
+
+  
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <h1>Student Feedback Form</h1>  
+                </div>
+      </div>
+    </div>
+    <div id="site_content1">
+      <div id="content">
+<h:form>
+
+	<h:dataTable id="table1" value="#{formBean.searchList}" var="temp" border="1" cellpadding="2">
+	
+	
+			<h:column>
+	 		<f:facet name ="header">
+                <h:outputText value="ID"></h:outputText>
+            </f:facet>
+                <h:outputText value="#{temp.id}"/>
+            </h:column>
+	
+	
+	
+	
+			<h:column>
+            <f:facet name ="header">
+                <h:outputText value="First Name"></h:outputText>
+            </f:facet>
+                <h:outputText value="#{temp.fName}"/>
+            </h:column>
+            
+            
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="Last name"/>
+            </f:facet>
+            <h:outputText value="#{temp.lName}"/>
+            </h:column>
+
+
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="Street Line 1"/>
+            </f:facet>
+            <h:outputText value="#{temp.address}"/>
+            </h:column>
+
+
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="City"/>
+            </f:facet>
+            <h:outputText value="#{temp.city}"/>
+            </h:column>
+            
+            
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="State"/>
+            </f:facet>
+            <h:outputText value="#{temp.state}"/>
+            </h:column>
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="Zip"/>
+            </f:facet>
+            <h:outputText value="#{temp.zip}"/>
+            </h:column>
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="Contact Number"/>
+            </f:facet>
+            <h:outputText value="#{temp.contactNumber}"/>
+            </h:column>
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="Email"/>
+            </f:facet>
+            <h:outputText value="#{temp.email}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="Date Of Survey"/>
+            </f:facet>
+            <h:outputText value="#{temp.dateSurvey}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="SEM Start Date"/>
+            </f:facet>
+            <h:outputText value="#{temp.startDate}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="Like About Campus"/>
+            </f:facet>
+            <h:outputText value="#{temp.checkBox}"/>
+            </h:column>
+            <h:column>
+            <f:facet name="header">
+                <h:outputText value="Interest"/>
+            </f:facet>
+            <h:outputText value="#{temp.source}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="Recommend"/>
+            </f:facet>
+            <h:outputText value="#{temp.recommend}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="Raffle"/>
+            </f:facet>
+            <h:outputText value="#{temp.raffle}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                <h:outputText value="Comments"/>
+            </f:facet>
+            <h:outputText value="#{temp.comments}"/>
+            </h:column>
+        
+         <h:column>
+         <f:facet name="header">
+                <h:outputText value="Delete Option"/>
+                 </f:facet>
+        	<h:commandButton value="Delete" action="#{formBean.deleteData(temp.id)}" ajax="false" >
+        	        	</h:commandButton>
+            </h:column>
+        </h:dataTable>
+        
+        </h:form>
+        <br/>
+        <br/>
+        <br/>
+        
+	<h1> <a href="Welcome.xhtml">Click here</a> for Welcome Page</h1>
+	
+	
+  </div>
+    </div>
+  </div>
+
+</h:body>
+</html>

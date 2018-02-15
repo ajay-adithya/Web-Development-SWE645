@@ -1,0 +1,195 @@
+
+<!DOCTYPE html  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Welcome to the Survey Page</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #ffffcc;
+}
+
+input {
+	color: #8b9dc3;
+}
+
+h1, form, h4, commandButton {
+	color: #3b5998;
+}
+</style>
+	<h:form>
+		<p>First Name:</p>
+		<p:inputText id="fName" required="true" value="#{formBean.fName}"
+			requiredMessage="You must enter your first name"
+				validatorMessage="You must not enter anything other than alphabets and should not exceed 15 characters">
+			<f:validateRegex pattern="^[a-zA-Z]*$"></f:validateRegex>
+			<f:validateLength minimum ="1" maximum="15">
+			</f:validateLength>
+		</p:inputText>
+		<p:message for="fName" styleClass="error"></p:message>
+		<br />
+		<p>Last Name:</p>
+		<p:inputText id="lName" required="true" value="#{formBean.lName}"
+			requiredMessage="You must enter your last name"
+			validatorMessage="You must not enter anything other than alphabets and should not exceed 15 characters">
+
+			<f:validateRegex pattern="^[a-zA-Z]*$"></f:validateRegex>
+			<f:validateLength minimum="1" maximum="15">
+			</f:validateLength>
+		</p:inputText>
+		<p:message for="lName" styleClass="error"></p:message>
+		<br />
+		
+		<p>Street Address:</p>
+		<p:inputText id="address" required="true" value="#{formBean.address}"
+			requiredMessage="You must enter your zip code"
+				validatorMessage="You must not enter anything other than numbers and should be of exactly 5 digits">
+			<f:validateLength  minimum="1" maximum="30">
+			</f:validateLength>
+		</p:inputText>
+		<p:message for="address" styleClass="error"></p:message>
+		<br />
+		
+		<p>Zip :</p>
+		<p:inputText id="zip" required="true" value="#{formBean.zip}"
+			    requiredMessage="You must enter your zip code"
+				validatorMessage="You must not enter anything other than numbers and should be of exactly 5 digits">
+			<f:ajax event="keyup" render="city state" listener="#{formBean.renderAll}"/>
+			<f:validateRegex pattern="^\d{5}(?:[-\s]\d{4})?$" />
+		</p:inputText>
+		<p:message for="zip" styleClass="error"></p:message>
+
+		<br />
+		
+
+		<p>City:</p>
+		<p:inputText id="city" required="true" value="#{formBean.city}"
+			 requiredMessage="You must enter your current city"
+				validatorMessage="You must not not enter anything other than alphabets">
+			<f:validateRegex pattern="^[a-zA-Z\s]*$"></f:validateRegex>
+			<f:validateLength minimum="1" maximum="15">
+			</f:validateLength>
+		</p:inputText>
+		<p:message for="city" styleClass="error"></p:message>
+
+		<p>State:</p>
+		<p:inputText id="state" required="true" value="#{formBean.state}"
+			 
+		requiredMessage="You must enter your current state"
+				validatorMessage="You must not not enter anything other than alphabets">
+			<f:validateRegex pattern="^[a-zA-Z]*$"></f:validateRegex>
+			<f:validateLength minimum="1" maximum="15"/>
+		</p:inputText>
+		<p:message for="state" styleClass="error"></p:message>
+
+
+		<br />
+		<br />
+
+		<p>Telephone Number:</p>
+		<p:inputMask id="contactNumber" value="#{formBean.contactNumber}"
+			mask="(999) 999-9999"  
+			requiredMessage="You must enter your phone number"
+			validatorMessage="Your must enter your telephone number in the following pattern (xxx)-xxx-xxxx"/>
+
+		<p:message for="contactNumber" styleClass="error"></p:message>
+
+		<br />
+		<br />
+		<p>E-mail:</p>
+		<p:inputText id="email" required="true" value="#{formBean.email}"
+			 
+		        requiredMessage="You must enter your email"
+				validatorMessage="Your must enter a valid email">
+			<f:validateRegex
+				pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" />
+		</p:inputText>
+		<p:message for="email" styleClass="error"></p:message>
+		<br />
+
+		<p>Date of Survey</p>
+		<p:calendar id="dateSurvey" value="#{formBean.dateSurvey}"
+			binding="#{startDateComponent}" pattern="MM/dd/yyyy"
+				requiredMessage="You must enter the date of survey"
+			validatorMessage="You must enter the date in mm/dd/yyyy" />
+		<p:message for="dateSurvey" styleClass="error" />
+		<br />
+		<br />
+
+
+		<p>Start Date of Semester</p>
+		<p:calendar id="stdate" value="#{formBean.startDate}"
+			pattern="MM/dd/yyyy" required="true"
+				requiredMessage="You must enter the date of start">
+			<f:validator validatorId="dateValidator"></f:validator>
+			<f:attribute name="startDateComponent" value="#{startDateComponent}" />
+		</p:calendar>
+		<p:message for="stdate" styleClass="error" />
+
+
+		<br />
+		<br />
+		<p>What did you like the most about the campus?</p>
+
+		<p:selectManyCheckbox value="#{formBean.campusRating}">
+			<f:selectItem itemValue="Student" itemLabel="Student" />
+			<f:selectItem itemValue="Campus" itemLabel="Campus" />
+			<f:selectItem itemValue="Dorm rooms" itemLabel="Dorm rooms" />
+			<f:selectItem itemValue="Location" itemLabel="Location" />
+			<f:selectItem itemValue="Atmosphere" itemLabel="Atmosphere" />
+			<f:selectItem itemValue="Sports" itemLabel="Sports" />
+		</p:selectManyCheckbox>
+
+		<br />
+
+		<p>How were you interested in GMU ?</p>
+
+		<p:selectOneRadio id="source" value="#{formBean.source}">
+			<f:selectItem itemValue="Friends" itemLabel="Friends" />
+			<f:selectItem itemValue="Television" itemLabel="Television" />
+			<f:selectItem itemValue="Internet" itemLabel="Internet" />
+			<f:selectItem itemValue="Other" itemLabel="Other" />
+		</p:selectOneRadio>
+
+		<br />
+
+
+		<p>What is the likelihood of recommending this school to other prospective students?</p>
+		<p:autoComplete value="#{formBean.recommend}"
+			completeMethod="#{formBean.autoRecommend}" 
+			forceSelection="true" required="true"
+				requiredMessage="You must choose an option"/>
+		<br />
+		<p>Raffle(Enter atleast 10 comma seperated numbers) :</p>
+		<p:inputText required="true" id="raffle" value="#{formBean.raffle}"
+			requiredMessage="You must enter values for the raffle ">
+			<f:validator validatorId="raffleValidator"></f:validator>
+		</p:inputText>
+		<p:message for="raffle" styleClass="error"></p:message>
+		<br />
+
+		<p>Additional Comments</p>
+		<p:inputTextarea value="#{formBean.comments}" />
+
+		<br />
+		<br/>
+
+		<p:commandButton value="Submit"
+			action="#{formBean.actionController()}"  onclick="#{formBean.init()}" ajax="false" />
+		
+		<p:commandButton type="reset" value="Reset"
+			onClick="window.location.reload()" ajax="false" />
+	</h:form>
+
+
+
+</h:body>
+</html>

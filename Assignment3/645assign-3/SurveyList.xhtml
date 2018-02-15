@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://java.sun.com/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body style="background-color:#ffffcc;">
+<h2> List of Survey</h2>
+<table border="1" style="width='100%'">
+<thead>
+	<tr>
+	<th class="survey-header" scope="col">First Name</th>
+	<th class="survey-header" scope="col">Last Name</th>
+	<th class="survey-header" scope="col">Street</th>
+	<th class="survey-header" scope="col">Zip</th>
+	<th class="survey-header" scope="col">City</th>
+	<th class="survey-header" scope="col">State</th>
+	<th class="survey-header" scope="col">Phone</th>
+	<th class="survey-header" scope="col">E-Mail</th>
+	<th class="survey-header" scope="col">Date</th>
+	<th class="survey-header" scope="col">Liked</th>
+	<th class="survey-header" scope="col">Heard</th>
+	<th class="survey-header" scope="col">Recommend</th>
+	<th class="survey-header" scope="col">Raffle</th>
+	<th class="survey-header" scope="col">Comments</th>
+	</tr>
+</thead>
+
+<tbody>
+<ui:repeat var="repeat1" value="#{formBean.displaySurvey()}">
+
+	<tr>
+	<td>#{repeat1.firstName}</td>
+	<td>#{repeat1.lastName}</td>
+	<td>#{repeat1.street}</td>
+	<td>#{repeat1.city}</td>
+	<td>#{repeat1.state}</td>
+	<td>#{repeat1.zip}</td>
+	<td>#{repeat1.number}</td>
+	<td>#{repeat1.email}</td>
+	<td>#{repeat1.dos}</td>
+	<td>#{repeat1.liked}</td>
+	<td>#{repeat1.hear}</td>
+	<td>#{repeat1.recommend}</td>
+	<td>#{repeat1.raffle}</td>
+	<td>#{repeat1.comment}</td>
+	</tr>	
+
+</ui:repeat>
+</tbody>
+</table>
+<h:form>
+<p:button value="Back to home page" outcome="WelcomePage.xhtml"/>
+</h:form>
+</h:body>
+</html>

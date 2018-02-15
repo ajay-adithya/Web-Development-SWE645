@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+<title>Acknowledgement</title>
+</h:head>
+<h:body style="background-color:#ffffcc;">
+	<h1 align= "center">Thank You</h1>
+    <h1> Thank you for filling out the Survey Form. Your data has been saved</h1>
+       <ul>
+           <li>First name: #{formBean.firstName}</li> 
+           <li>Last name: #{formBean.lastName}</li> 
+           <li>Mean: #{winningBean.mean}</li>
+           <li>Standard Deviation: #{winningBean.standardDeviation}</li>
+       </ul>
+    <h:form>
+    <p:button value="Back to Homepage" outcome="WelcomePage.xhtml"/>  
+    </h:form>    
+</h:body>
+</html>

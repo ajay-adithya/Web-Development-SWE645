@@ -1,0 +1,39 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Welcome to the Home Page</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #ffffcc;
+}
+
+h1, h4 {
+	color: #3b5998;
+}
+</style>
+	<h:form>
+		<h:panelGrid columns="2">
+			
+			<p:outputLabel
+				value="Please click on the survey form to take the survey:" />
+			<p:link value="Student Survey" outcome="Survey.jsf" />
+			
+			<p:outputLabel
+				value="Please click on the list of surveys to view all the surveys:" />
+            <p:link value="List All Surveys" outcome="ListSurveys.jsf"  ajax="false" />
+            
+            <p:outputLabel
+				value="Please click on the search surveys to search for someone:" />
+            <p:link value="Search Surveys" outcome="Search.jsf" ajax="false"  />
+			
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

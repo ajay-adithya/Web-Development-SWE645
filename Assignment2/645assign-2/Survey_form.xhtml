@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://java.sun.com/jsf/passthrough">
+<h:head>
+<title>Survey Form</title>
+<style>
+.error{color:red}
+</style>
+</h:head>
+
+<h:body style="background-color:#ffffcc;"> 	
+<h3> Survey Form</h3>
+<h:form>
+
+<h:panelGrid columns='3'>
+   <h:outputText value="First Name :"></h:outputText>
+   <h:inputText id="firstName" value="#{formBean.firstName}" required="true" validatorMessage="Only alphabets allowed"> 
+			<f:validateRegex pattern="[a-zA-Z]*" />
+			<f:validateLength minimum="1" maximum="15" />
+	</h:inputText>
+	<h:messages for="firstName" styleClass="error"/>	   
+
+   <h:outputText value="Last Name :"></h:outputText>
+   <h:inputText id="lastName" value="#{formBean.lastName}" required="true" validatorMessage="Only alphabets allowed">
+  		<f:validateRegex pattern="[a-zA-Z]*" />
+		<f:validateLength minimum="1" maximum="15" />
+	</h:inputText>
+	<h:messages for="lastName" styleClass="error"/>
+        
+
+   <h:outputText value="Street Address :"></h:outputText>
+   <h:inputText id="street" value="#{formBean.street}" required="true" validatorMessage="Only numeric, alphabet or alphanumeric characters allowed">
+		<f:validateLength minimum="1" maximum="30" />
+	</h:inputText>
+	<h:messages for="street" styleClass="error"/>
+
+   <h:outputText value="City :"></h:outputText>
+   <h:inputText id="city" value="#{formBean.city}" required="true" validatorMessage="Only alphabets allowed">
+  	 <f:validateRegex pattern="^[a-zA-Z]*" />
+	</h:inputText>      
+	<h:messages for="city" styleClass="error"/>
+
+   <h:outputText value="State :"></h:outputText>
+   <h:inputText id="state" value="#{formBean.state}" required="true" validatorMessage="Only alphabets allowed">
+		<f:validateRegex pattern="^[a-zA-Z]*" />
+	</h:inputText>  
+	<h:messages for="state" styleClass="error"/>
+
+   <h:outputText value="Zip Code (five digits):"></h:outputText>
+   <h:inputText id="zip" value="#{formBean.zip}" required="true" validatorMessage="Only digits allowed">
+  	 <f:validateRegex pattern="[0-9]*" />
+	 <f:validateLength minimum="5" maximum="5" />
+   </h:inputText>                          
+	<h:messages for="zip" styleClass="error"/>
+
+   <h:outputText value="Telephone Number (in the format (xxx)-xxx-xxxx):"></h:outputText>
+   <h:inputText id="number" value="#{formBean.number}" required="true" validatorMessage="Only numbers allowed of length 10 in the given pattern:(xxx)-xxx-xxxx">
+   	<f:validateRegex pattern="\(\d{3}\)\-\d{3}-\d{4}"/>
+	</h:inputText>    
+	<h:messages for="number" styleClass="error"/>
+
+   <h:outputText value="Email (in the format (xx@xx.xxx)):"></h:outputText>
+   <h:inputText id="email" value="#{formBean.email}" required="true" validatorMessage="Enter a valid e-mail id">
+     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+   </h:inputText>  
+   <h:messages for="email" styleClass="error"/> 
+
+   <h:outputText value="Date of Survey (in the format (mm-dd-yyyy)):"></h:outputText>
+   <h:inputText id="date" value="#{formBean.dos}" required="true" validatorMessage="Enter date">
+    <f:convertDateTime pattern="mm-dd-yyyy" />
+	</h:inputText>    
+	<h:messages for="date" styleClass="error"/> 
+
+   <h:outputText value = "What you liked most about campus"></h:outputText>
+   <h:selectManyCheckbox id = "best" value="#{formBean.liked}">
+     <f:selectItem itemValue ="students" itemLabel = "Students"/>
+     <f:selectItem itemValue ="location" itemLabel = "Location"/>
+     <f:selectItem itemValue ="campus" itemLabel = "Campus"/>
+     <f:selectItem itemValue ="atm" itemLabel = "Atmosphere"/>
+     <f:selectItem itemValue ="dorms" itemLabel = "Dorm Rooms"/>
+     <f:selectItem itemValue ="sports" itemLabel = "Sports"/>
+   </h:selectManyCheckbox>
+	<br />
+
+   <h:outputText value = "How did you hear about GMU?"></h:outputText>
+   <h:selectOneRadio id = "know" value="#{formBean.hear}">
+     <f:selectItem itemValue ="friends" itemLabel = "Friends"/>
+     <f:selectItem itemValue ="tv" itemLabel = "TV"/>
+     <f:selectItem itemValue ="internet" itemLabel = "Internet"/>
+     <f:selectItem itemValue ="other" itemLabel = "Other"/>
+   </h:selectOneRadio>
+   <br />
+
+   <h:outputText value="Likelihood of Recommending the School to others :"></h:outputText>
+   <h:selectOneMenu id="like" value="#{formBean.recommend}">
+      <f:selectItem itemLabel="Very Likely" itemValue="very Likely"></f:selectItem>
+      <f:selectItem itemLabel="Likely" itemValue="likely"></f:selectItem>
+      <f:selectItem itemLabel="Unlikely" itemValue="unlikely"></f:selectItem>
+   </h:selectOneMenu>
+   <br />
+
+   <h:outputText value="Raffle (Enter at least ten comma separated numbers ranging from 1 through 100  ) :"></h:outputText>
+   <h:inputText id="raffle" value="#{formBean.raffle}"/>
+   <br />
+
+   <h:outputText value="Comments: "></h:outputText>
+   <h:inputTextarea row="10" col="10" value="#{formBean.comments}" />
+   <br />
+
+</h:panelGrid>
+
+   <h:commandButton id ="submit" value="Submit" action="#{studentservice.submit}"/>
+   <h:commandButton type="reset" value="Reset"></h:commandButton>
+   <br />
+   <h:link value="Back to Homepage" outcome="WelcomePage"/>
+
+</h:form>
+</h:body>
+</html>
